@@ -6,7 +6,6 @@
 
 <script lang="ts">
     import Vue from 'vue';
-
     import HelloWorld from './components/HelloWorld.vue';
 
     export default Vue.extend({
@@ -24,9 +23,7 @@
 
         created() {
             this.eventList.forEach( eventName => {
-                console.log("created");
                 this.$bus.$on(eventName, data => {
-                    console.log("on");
                     this.eventSwitch(eventName, data);
                 });
             });
@@ -40,7 +37,7 @@
 
         methods: {
             eventSwitch: function (eventName, data) {
-                console.log(eventName);
+                this.$store.dispatch(eventName, data);
             }
         }
     });

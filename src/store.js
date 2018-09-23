@@ -5,17 +5,22 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        counter: 3
+        counter: 0
+    },
+    actions: {
+        inc(context, data) {
+            context.commit("inc", data)
+        },
+        dec(context, data) {
+            context.commit("dec", data)
+        }
     },
     mutations: {
         inc(state, data) {
-            console.log("mutate inc");
             state.counter += data.amt;
         },
         dec(state, data) {
-            console.log("mutate dec");
             state.counter -= data.amt;
         }
-    },
-    actions: {}
+    }
 })
