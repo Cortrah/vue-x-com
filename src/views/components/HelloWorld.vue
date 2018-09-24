@@ -12,6 +12,8 @@
 
 <script>
     import Vue from 'vue';
+    import AddSome from '../../commands/AddSome';
+    import DecSome from '../../commands/DecSome';
 
     export default Vue.extend({
         name: 'HelloWorld',
@@ -20,11 +22,10 @@
         },
         methods: {
             inc: function () {
-                this.$bus.$emit("inc", {amt: 4})
+                this.$bus.$emit("queue", new AddSome({amt: 4}));
             },
             dec: function () {
-                this.$bus.$emit("dec", {amt: 3})
-            }
+                this.$bus.$emit("queue", new DecSome({amt: 3}));            }
         }
     });
 </script>

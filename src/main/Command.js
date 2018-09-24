@@ -1,14 +1,8 @@
-'use strict';
 
-module.exports = class Command {
+export default class Command {
 
-    constructor(name, stage, data) {
+    constructor(name, data) {
         this.name = name;
-        this.stage = stage; // has bus and store
         this.data = data;
     };
-
-    dispatch() {
-        this.stage.que.dispatchEvent(this.name, this.stage, this.data);
-    }
-};
+}
