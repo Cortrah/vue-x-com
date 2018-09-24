@@ -34,10 +34,10 @@
                 this.$bus.$emit("Enqueue", new DecSome({amt: 3, context: this.$store}));
             },
             play: function () {
-                this.$store.dispatch("Play");
+                this.$bus.$emit("Play");
             },
             pause: function () {
-                this.$store.dispatch("Pause");
+                this.$bus.$emit("Pause");
             }
         }
     });

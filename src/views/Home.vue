@@ -7,6 +7,7 @@
 <script lang="ts">
     import Vue from 'vue';
     import HelloWorld from './components/HelloWorld.vue';
+    import Queue from '../main/Queue'
 
     export default Vue.extend({
         name: 'home',
@@ -17,7 +18,8 @@
 
         data () {
             return {
-                eventList: ['Enqueue'],
+                queue: new Queue(),
+                eventList: ['Enqueue', 'Play', 'Pause'],
             }
         },
 
@@ -37,8 +39,21 @@
 
         methods: {
             eventSwitch: function (eventName, data) {
-                this.$store.dispatch("Enqueue", data);
-            }
+                switch(eventName) {
+                    case 'Enqueue': {
+                        this.queue.add(data);
+                        break;
+                    }
+                    case 'Play': {
+                        this.queue.play();
+                        break;
+                    }
+                    case 'Pause': {
+                        this.queue.pause();
+                        break;
+                    }
+                }
+            },
         }
     });
 </script>
