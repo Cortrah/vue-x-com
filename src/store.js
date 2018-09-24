@@ -14,6 +14,12 @@ export default new Vuex.Store({
             command.context = context;
             this.state.queue.add(command);
         },
+        Play() {
+            this.state.queue.play();
+        },
+        Pause() {
+            this.state.queue.pause();
+        }
     },
     mutations: {
         Run(state, command) {

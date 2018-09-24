@@ -7,6 +7,12 @@
         <button @click.prevent="dec()">
             -
         </button>
+        <button @click.prevent="play()">
+            play
+        </button>
+        <button @click.prevent="pause()">
+            pause
+        </button>
     </div>
 </template>
 
@@ -25,7 +31,14 @@
                 this.$bus.$emit("Enqueue", new AddSome({amt: 4, context: this.$store}));
             },
             dec: function () {
-                this.$bus.$emit("Enqueue", new DecSome({amt: 3, context: this.$store}));            }
+                this.$bus.$emit("Enqueue", new DecSome({amt: 3, context: this.$store}));
+            },
+            play: function () {
+                this.$store.dispatch("Play");
+            },
+            pause: function () {
+                this.$store.dispatch("Pause");
+            }
         }
     });
 </script>

@@ -1,9 +1,6 @@
-//import Event from "../main/Event";
-
 export default class Queue {
 
     constructor (playHead = 0, commands = []) {
-        this.events = {};
         this.playhead = playHead;
         this.commands = commands;
         this.isRunning = false;
@@ -11,12 +8,18 @@ export default class Queue {
 
     add(command) {
         this.commands.push(command);
-        this.play();
     }
 
     async play() {
         this.isRunning = true;
         while(this.isRunning && (this.playhead < this.commands.length)){
+            let promise = new Promise((resolve, reject) => {
+                setTimeout(() => resolve(true), 1000) // resolve
+            });
+            // wait for the promise to resolve
+            let result = await promise;
+
+            // and get and execute a command
             let command = this.commands[this.playhead];
             command.context.commit("Run", command);
             this.playhead++;
