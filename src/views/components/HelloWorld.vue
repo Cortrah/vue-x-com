@@ -22,10 +22,10 @@
         },
         methods: {
             inc: function () {
-                this.$bus.$emit("Enqueue", new AddSome({amt: 4}));
+                this.$bus.$emit("Enqueue", new AddSome({amt: 4, context: this.$store}));
             },
             dec: function () {
-                this.$bus.$emit("Enqueue", new DecSome({amt: 3}));            }
+                this.$bus.$emit("Enqueue", new DecSome({amt: 3, context: this.$store}));            }
         }
     });
 </script>

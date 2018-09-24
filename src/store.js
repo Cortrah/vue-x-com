@@ -11,8 +11,8 @@ export default new Vuex.Store({
     },
     actions: {
         Enqueue(context, command) {
+            command.context = context;
             this.state.queue.add(command);
-            context.commit("Run", command)
         },
     },
     mutations: {
