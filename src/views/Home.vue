@@ -17,7 +17,7 @@
 
         data () {
             return {
-                eventList: ['queue'],
+                eventList: ['Queue'],
             }
         },
 
@@ -37,7 +37,7 @@
 
         methods: {
             eventSwitch: function (eventName, data) {
-                this.$store.dispatch("Que", data);
+                this.$store.dispatch("Queue", data);
             }
         }
     });

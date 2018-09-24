@@ -5,5 +5,9 @@ export default class DecSome extends Command{
     constructor( data) {
         super('DecSome', data);
     }
+
+    do(state){
+        state.counter -= this.data.amt;
+    }
 }
 

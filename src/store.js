@@ -8,19 +8,13 @@ export default new Vuex.Store({
         counter: 0
     },
     actions: {
-        Que(context, data) {
-            console.log(context);
-            console.log(data.name);
-            console.log(data.data);
-            context.commit(data.name, data)
+        Queue(context, command) {
+            context.commit("Run", command)
         },
     },
     mutations: {
-        AddSome(state, com) {
-            state.counter += com.data.amt;
-        },
-        DecSome(state, com) {
-            state.counter -= com.data.amt;
+        Run(state, command) {
+            command.do(state)
         }
     }
 })

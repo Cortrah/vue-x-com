@@ -5,5 +5,9 @@ export default class AddSome extends Command{
     constructor( data) {
         super('AddSome', data);
     }
+
+    do(state){
+        state.counter += this.data.amt;
+    }
 }
 
