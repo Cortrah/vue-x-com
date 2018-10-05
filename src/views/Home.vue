@@ -1,19 +1,19 @@
  <template>
     <div class="home">
-        <HelloWorld msg="ok"/>
+        <CountController/>
     </div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue';
-    import HelloWorld from './components/HelloWorld.vue';
+    import CountController from './components/CountController.vue';
     import Queue from '../main/Queue'
 
     export default Vue.extend({
         name: 'home',
 
         components: {
-            HelloWorld,
+            CountController,
         },
 
         data () {

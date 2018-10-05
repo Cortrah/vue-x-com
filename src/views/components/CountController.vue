@@ -1,12 +1,15 @@
 <template>
     <div class="hello">
         <h1>{{ this.$store.state.counter }}</h1>
+        <input ref="ammountInput" v-model="ammount" style="max-width: 40px"/>
+        <br/>
         <button @click.prevent="inc()">
             +
         </button>
         <button @click.prevent="dec()">
             -
         </button>
+        <br/>
         <button @click.prevent="play()">
             play
         </button>
@@ -22,16 +25,18 @@
     import DecSome from '../../commands/DecSome';
 
     export default Vue.extend({
-        name: 'HelloWorld',
-        props: {
-            msg: String,
+        name: 'Panel',
+        data () {
+            return {
+                ammount: 4,
+            }
         },
         methods: {
             inc: function () {
-                this.$bus.$emit("Enqueue", new AddSome({amt: 4, context: this.$store}));
+                this.$bus.$emit("Enqueue", new AddSome({amt: this.ammount, context: this.$store}));
             },
             dec: function () {
-                this.$bus.$emit("Enqueue", new DecSome({amt: 3, context: this.$store}));
+                this.$bus.$emit("Enqueue", new DecSome({amt: this.ammount, context: this.$store}));
             },
             play: function () {
                 this.$bus.$emit("Play");
