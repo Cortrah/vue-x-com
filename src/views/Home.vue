@@ -2,6 +2,12 @@
     <div class="home">
         <CountController/>
         Direction: {{queue.direction}}
+        <br/>
+        Is Running: {{queue.isRunning}}
+        <br/>
+        Command Count: {{queue.commands.length}}
+        <br/>
+        Playhead: {{queue.playhead}}
     </div>
 </template>
 

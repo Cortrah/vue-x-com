@@ -1,7 +1,7 @@
 export default class Queue {
 
-    constructor (playHead = 0, commands = []) {
-        this.playhead = playHead;
+    constructor (playhead = 0, commands = []) {
+        this.playhead = playhead;
         this.commands = commands;
         this.isRunning = false;
         this.direction = 'forward'; // or 'reverse'
@@ -22,6 +22,7 @@ export default class Queue {
                 let result = await promise;
 
                 // and get and execute a command
+                console.log(this.playhead);
                 let command = this.commands[this.playhead];
                 command.data.context.commit("Do", command);
                 this.playhead++;
@@ -35,6 +36,7 @@ export default class Queue {
                 let result = await promise;
 
                 // and get and execute a command
+                console.log(this.playhead);
                 this.playhead--;
                 let command = this.commands[this.playhead];
                 command.data.context.commit("Undo", command);
