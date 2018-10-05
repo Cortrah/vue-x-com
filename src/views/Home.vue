@@ -1,6 +1,7 @@
  <template>
     <div class="home">
         <CountController/>
+        Direction: {{queue.direction}}
     </div>
 </template>
 
@@ -19,7 +20,7 @@
         data () {
             return {
                 queue: new Queue(),
-                eventList: ['Enqueue', 'Play', 'Pause'],
+                eventList: ['Enqueue', 'Play', 'Pause', 'Reverse'],
             }
         },
 
@@ -50,6 +51,10 @@
                     }
                     case 'Pause': {
                         this.queue.pause();
+                        break;
+                    }
+                    case 'Reverse': {
+                        this.queue.reverse();
                         break;
                     }
                 }

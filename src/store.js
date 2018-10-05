@@ -10,8 +10,11 @@ export default new Vuex.Store({
     actions: {
     },
     mutations: {
-        Run(state, command) {
+        Do(state, command) {
             command.do(state)
+        },
+        Undo(state, command) {
+            command.undo(state)
         }
     }
 })

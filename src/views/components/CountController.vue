@@ -10,11 +10,15 @@
             -
         </button>
         <br/>
+        <br/>
         <button @click.prevent="play()">
             play
         </button>
         <button @click.prevent="pause()">
             pause
+        </button>
+        <button @click.prevent="reverse()">
+            reverse
         </button>
     </div>
 </template>
@@ -43,6 +47,9 @@
             },
             pause: function () {
                 this.$bus.$emit("Pause");
+            },
+            reverse: function () {
+                this.$bus.$emit("Reverse");
             }
         }
     });

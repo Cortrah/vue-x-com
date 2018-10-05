@@ -9,5 +9,9 @@ export default class DecSome extends Command{
     do(state){
         state.counter -= this.data.amt;
     }
+
+    undo(state){
+        state.counter += this.data.amt;
+    }
 }
 
