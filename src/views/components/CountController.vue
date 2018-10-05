@@ -10,6 +10,9 @@
             -
         </button>
         <br/>
+        <button @click.prevent="fetchSome()">
+            fetch
+        </button>
         <br/>
         <button @click.prevent="play()">
             play
@@ -27,6 +30,7 @@
     import Vue from 'vue';
     import AddSome from '../../commands/AddSome';
     import DecSome from '../../commands/DecSome';
+    import FetchSome from '../../commands/DecSome';
 
     export default Vue.extend({
         name: 'Panel',
@@ -41,6 +45,9 @@
             },
             dec: function () {
                 this.$bus.$emit("Enqueue", new DecSome({amt: this.ammount, context: this.$store}));
+            },
+            fetchSome: function () {
+                this.$bus.$emit("Enqueue", new FetchSome({url: 'https://www.google.com', context: this.$store}));
             },
             play: function () {
                 this.$bus.$emit("Play");

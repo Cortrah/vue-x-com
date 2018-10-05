@@ -4,7 +4,9 @@ export default class Queue {
         this.playhead = playhead;
         this.commands = commands;
         this.isRunning = false;
-        this.direction = 'forward'; // or 'reverse'
+
+        // 'forward' or 'reverse'
+        this.direction = 'forward';
     }
 
     add(command) {
@@ -18,11 +20,8 @@ export default class Queue {
                 let promise = new Promise((resolve, reject) => {
                     setTimeout(() => resolve(true), 1000);
                 });
-                // wait for the promise to resolve
                 let result = await promise;
 
-                // and get and execute a command
-                console.log(this.playhead);
                 let command = this.commands[this.playhead];
                 command.data.context.commit("Do", command);
                 this.playhead++;
@@ -32,11 +31,8 @@ export default class Queue {
                 let promise = new Promise((resolve, reject) => {
                     setTimeout(() => resolve(true), 1000);
                 });
-                // wait for the promise to resolve
                 let result = await promise;
 
-                // and get and execute a command
-                console.log(this.playhead);
                 this.playhead--;
                 let command = this.commands[this.playhead];
                 command.data.context.commit("Undo", command);
