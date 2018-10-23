@@ -7,8 +7,8 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import CountController from './components/CountController.vue';
-    import Queue from '../main/Queue'
+    import CountController from './components/CountManager.vue';
+    import Queue from '../commander/Queue'
 
     export default Vue.extend({
         name: 'home',

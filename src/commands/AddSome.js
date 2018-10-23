@@ -1,4 +1,4 @@
-import Command from "../main/Command";
+import Command from "../commander/Command";
 
 export default class AddSome extends Command{
 
