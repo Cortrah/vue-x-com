@@ -3,7 +3,7 @@ export default class Queue {
     constructor (playHead = 0, commands = []) {
         this.playhead = playHead;
         this.commands = commands;
-        this.isRunning = false;
+        this.isRunning = true;
         this.direction = 'forward'; // or 'reverse'
     }
 
@@ -23,7 +23,7 @@ export default class Queue {
 
                 // and get and execute a command
                 let command = this.commands[this.playhead];
-                command.data.context.commit("Do", command);
+                command.data.context.commit("do", command);
                 this.playhead++;
             }
         } else {
@@ -37,7 +37,7 @@ export default class Queue {
                 // and get and execute a command
                 this.playhead--;
                 let command = this.commands[this.playhead];
-                command.data.context.commit("Undo", command);
+                command.data.context.commit("undo", command);
             }
         }
        this.pause()

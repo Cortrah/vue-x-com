@@ -1,7 +1,7 @@
 <template>
     <div class="hello">
         <h1>{{ this.$store.state.counter }}</h1>
-        <input ref="ammountInput" v-model="ammount" style="max-width: 40px"/>
+        <input ref="amountInput" v-model="amount" style="max-width: 40px"/>
         <br/>
         <button @click.prevent="inc()">
             +
@@ -32,15 +32,15 @@
         name: 'Panel',
         data () {
             return {
-                ammount: 4,
+                amount: 4,
             }
         },
         methods: {
             inc: function () {
-                this.$bus.$emit("Enqueue", new AddSome({amt: this.ammount, context: this.$store}));
+                this.$bus.$emit("Enqueue", new AddSome({amt: this.amount, context: this.$store}));
             },
             dec: function () {
-                this.$bus.$emit("Enqueue", new DecSome({amt: this.ammount, context: this.$store}));
+                this.$bus.$emit("Enqueue", new DecSome({amt: this.amount, context: this.$store}));
             },
             play: function () {
                 this.$bus.$emit("Play");

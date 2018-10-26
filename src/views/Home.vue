@@ -1,20 +1,28 @@
  <template>
     <div class="home">
-        <CountController/>
-        Direction: {{queue.direction}}
+        <CountManager/>
+        <p>
+            Is Running ?: {{queue.isRunning}}
+        </p>
+        <p>
+            Direction: {{queue.direction}}
+        </p>
+        <p>
+            on {{queue.playhead}} of {{ queue.commands.length }}
+        </p>
     </div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue';
-    import CountController from './components/CountManager.vue';
+    import CountManager from './components/CountManager.vue';
     import Queue from '../commander/Queue'
 
     export default Vue.extend({
         name: 'home',
 
         components: {
-            CountController,
+            CountManager,
         },
 
         data () {
