@@ -7,11 +7,11 @@ export default class AddSome extends Command{
     }
 
     do(state){
-        state.counter += this.data.amt;
+        state.counter += Number(this.data.amt);
     }
 
     undo(state){
-        state.counter -= this.data.amt;
+        state.counter -= Number(this.data.amt);
     }
 
 }

@@ -1,4 +1,16 @@
-# simpleton
+# VueCommander
+
+Vue Commander is an experiment in using the command pattern and asynchronous command queues 
+to provide an alternative to the standard stylistic usage of vuex in a vue app which I find verbose and inconsistent.
+
+Specifically the goals are to
+
+Unify the syntax of events, router actions, vuex actions and vuex mutations 
+
+Be able to record and playback asynchronous commands for things like transactional boundaries and undo/redo functionality
+
+Maintain compatibility with the vuex and event logs of vue-dev-tools.
+
 
 ## Project setup
 ```
