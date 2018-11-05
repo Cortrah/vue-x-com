@@ -32,8 +32,8 @@
 
         created() {
             this.eventList.forEach( eventName => {
-                this.$bus.$on(eventName, data => {
-                    this.eventSwitch(eventName, data);
+                this.$bus.$on(eventName, (data, resolve, reject) => {
+                    this.eventSwitch(eventName, data, resolve, reject);
                 });
             });
         },
@@ -45,10 +45,10 @@
         },
 
         methods: {
-            eventSwitch: function (eventName, data) {
+            eventSwitch: function (eventName, data, resolve, reject) {
                 switch(eventName) {
                     case 'Enqueue': {
-                        this.queue.add(data);
+                        this.queue.add(data, resolve, reject);
                         break;
                     }
                     case 'Play': {

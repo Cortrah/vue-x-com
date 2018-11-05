@@ -6,7 +6,7 @@ export default class FetchSome extends Command{
         super('FetchSome', data);
     }
 
-    async do(state){
+    do(state){
         let promise = new Promise((resolve, reject) => {
             setTimeout(() => resolve(true), 1000);
         });

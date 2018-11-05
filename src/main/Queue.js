@@ -9,7 +9,7 @@ export default class Queue {
         this.direction = 'forward';
     }
 
-    add(command) {
+    add(command, resolve, reject) {
         this.commands.push(command);
     }
 
@@ -23,7 +23,8 @@ export default class Queue {
                 let result = await promise;
 
                 let command = this.commands[this.playhead];
-                command.data.context.commit("Do", command);
+                command.data.context.commit("do", command);
+
                 this.playhead++;
             }
         } else {
@@ -35,7 +36,7 @@ export default class Queue {
 
                 this.playhead--;
                 let command = this.commands[this.playhead];
-                command.data.context.commit("Undo", command);
+                command.data.context.commit("undo", command);
             }
         }
        this.pause()

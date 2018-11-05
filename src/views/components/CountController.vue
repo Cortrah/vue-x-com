@@ -1,7 +1,7 @@
 <template>
     <div class="hello">
         <h1>{{ this.$store.state.counter }}</h1>
-        <input ref="ammountInput" v-model="ammount" style="max-width: 40px"/>
+        <input v-model="amount" style="max-width: 40px"/>
         <br/>
         <button @click.prevent="inc()">
             +
@@ -36,18 +36,53 @@
         name: 'Panel',
         data () {
             return {
-                ammount: 4,
+                amount: 4,
             }
         },
         methods: {
             inc: function () {
-                this.$bus.$emit("Enqueue", new AddSome({amt: this.ammount, context: this.$store}));
+                let addPromise = new Promise((resolve, reject) => {
+                    let command = new AddSome({amt: this.amount, context: this.$store});
+                    this.$bus.$emit("Enqueue", command, resolve, reject);
+                });
+
+                addPromise
+                    .then( response => {
+                        console.log('add returned');
+                    })
+                    .catch( error => {
+                        console.log("add erored");
+                    })
             },
             dec: function () {
-                this.$bus.$emit("Enqueue", new DecSome({amt: this.ammount, context: this.$store}));
+                let decPromise = new Promise((resolve, reject) => {
+                    let command = new DecSome({amt: this.amount, context: this.$store});
+                    this.$bus.$emit("Enqueue", command, resolve, reject);
+                });
+
+                decPromise
+                    .then( response => {
+                        console.log('dec returned');
+                    })
+                    .catch( error => {
+                        console.log("dec erored");
+                    })
             },
             fetchSome: function () {
                 this.$bus.$emit("Enqueue", new FetchSome({url: 'https://www.google.com', context: this.$store}));
+
+                let fetchPromise = new Promise((resolve, reject) => {
+                    let command = new FetchSome({url: 'https://www.google.com', context: this.$store});
+                    this.$bus.$emit("Enqueue", command, resolve, reject);
+                });
+
+                fetchPromise
+                    .then( response => {
+                        console.log('fetch returned');
+                    })
+                    .catch( error => {
+                        console.log("fetch erored");
+                    })
             },
             play: function () {
                 this.$bus.$emit("Play");
