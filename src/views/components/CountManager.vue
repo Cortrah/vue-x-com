@@ -22,18 +22,17 @@
         },
         methods: {
             inc: function () {
-                let addPromise = new Promise((resolve, reject) => {
+                //let addPromise = new Promise((resolve, reject) => {
                     let command = new AddSome({amt: this.amount, context: this.$store});
-                    this.$bus.$emit(command.name, command, resolve, reject);
-                });
-
-                addPromise
-                    .then( response => {
-                        console.log('add returned');
-                    })
-                    .catch( error => {
-                        console.log("add error");
-                    })
+                    this.$bus.$emit(command.name, command);
+                //});
+                // addPromise
+                //     .then( response => {
+                //         console.log('add returned');
+                //     })
+                //     .catch( error => {
+                //         console.log("add error");
+                //     })
             },
         }
     });

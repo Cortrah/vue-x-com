@@ -4,17 +4,21 @@ export default class AddSome extends Command{
 
     constructor(data) {
         super('AddSome', data);
+        console.log("Constructed");
     }
 
-    do(state, resolve, reject){
-        let promise = new Promise((resolve, reject) => {
+    do(state){
+        //let promise = new Promise((resolve, reject) => {
+
+            console.log("do");
             state.counter = Number(state.counter) + Number(this.data.amt);
-        }).then( response => {
-            console.log("Add some responded");
-        }).catch( error => {
-            console.log("Add some had an Error");
-        });
-        return promise;
+
+        //}).then( response => {
+        //    console.log("Add some responded");
+        //}).catch( error => {
+        //    console.log("Add some had an Error");
+        //});
+        //return promise;
     }
 }
 

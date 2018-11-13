@@ -1,5 +1,6 @@
  <template>
     <div class="home">
+        <CountManager/>
     </div>
 </template>
 
@@ -15,8 +16,8 @@
         },
 
         created() {
-            this.$bus.$on('AddSome', (command, resolve, reject) => {
-                return this.$store.commit("do", command, resolve, reject);
+            this.$bus.$on('AddSome', (command) => {
+                this.$store.commit("do", command);
             });
         },
 
