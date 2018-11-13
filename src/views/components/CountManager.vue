@@ -23,8 +23,10 @@
         methods: {
             inc: function () {
                 //let addPromise = new Promise((resolve, reject) => {
-                    let command = new AddSome({amt: this.amount, context: this.$store});
-                    this.$bus.$emit(command.name, command);
+                   let command = new AddSome({amt: this.amount, context: this.$store});
+                   let returnValue = this.$bus.$emit(command.name, command);
+                   console.log("returnValue");
+                   console.log(returnValue);
                 //});
                 // addPromise
                 //     .then( response => {

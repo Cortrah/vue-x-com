@@ -17,7 +17,8 @@
 
         created() {
             this.$bus.$on('AddSome', (command) => {
-                this.$store.commit("do", command);
+                console.log("heard");
+                return this.$store.dispatch({ type: "do", command});
             });
         },
 
