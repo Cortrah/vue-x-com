@@ -16,9 +16,8 @@
         },
 
         created() {
-            this.$bus.$on('AddSome', (command) => {
-                console.log("heard");
-                return this.$store.dispatch({ type: "do", command});
+            this.$bus.$on('Enqueue', (command) => {
+                return this.$store.dispatch({ type: "Enqueue", command});
             });
         },
 
