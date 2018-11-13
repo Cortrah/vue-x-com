@@ -1,70 +1,27 @@
  <template>
     <div class="home">
-        <CountController/>
-        Direction: {{queue.direction}}
-        <br/>
-        Is Running: {{queue.isRunning}}
-        <br/>
-        Command Count: {{queue.commands.length}}
-        <br/>
-        Playhead: {{queue.playhead}}
     </div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue';
-    import CountController from './components/CountController.vue';
-    import Queue from '../main/Queue'
+    import CountManager from './components/CountManager.vue';
 
     export default Vue.extend({
         name: 'home',
 
         components: {
-            CountController,
-        },
-
-        data () {
-            return {
-                queue: new Queue(),
-                eventList: ['Enqueue', 'Play', 'Pause', 'Reverse'],
-            }
+            CountManager,
         },
 
         created() {
-            this.eventList.forEach( eventName => {
-                this.$bus.$on(eventName, (data, resolve, reject) => {
-                    this.eventSwitch(eventName, data, resolve, reject);
-                });
+            this.$bus.$on('AddSome', (command, resolve, reject) => {
+                return this.$store.commit("do", command, resolve, reject);
             });
         },
 
         beforeDestroy () {
-            this.eventList.forEach( eventName => {
-                this.$bus.$off(eventName);
-            });
-        },
-
-        methods: {
-            eventSwitch: function (eventName, data, resolve, reject) {
-                switch(eventName) {
-                    case 'Enqueue': {
-                        this.queue.add(data, resolve, reject);
-                        break;
-                    }
-                    case 'Play': {
-                        this.queue.play();
-                        break;
-                    }
-                    case 'Pause': {
-                        this.queue.pause();
-                        break;
-                    }
-                    case 'Reverse': {
-                        this.queue.reverse();
-                        break;
-                    }
-                }
-            },
+            this.$bus.$off('AddSome');
         }
     });
 </script>
