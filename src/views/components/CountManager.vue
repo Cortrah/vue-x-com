@@ -23,8 +23,8 @@
         methods: {
             inc: function () {
                 let command = new AddSome({amt: this.amount, context: this.$store});
-                let returnValue = this.$bus.$emit("Enqueue", command);
-                console.log(returnValue)
+                let returnValue = this.$bus.$emit("enqueue", command);
+                console.log(returnValue);
             },
         }
     });

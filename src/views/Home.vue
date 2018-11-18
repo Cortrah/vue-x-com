@@ -16,13 +16,13 @@
         },
 
         created() {
-            this.$bus.$on('Enqueue', (command) => {
-                return this.$store.dispatch({ type: "Enqueue", command});
+            this.$bus.$on('enqueue', (command) => {
+                return this.$store.dispatch({ type: "enqueue", command});
             });
         },
 
         beforeDestroy () {
-            this.$bus.$off('AddSome');
+            this.$bus.$off('enqueue');
         }
     });
 </script>

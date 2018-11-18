@@ -8,8 +8,8 @@ export default new Vuex.Store({
         counter: 0,
     },
     actions: {
-        Enqueue(context, payload) {
-            return context.commit('do', payload)
+        enqueue(context, command) {
+            return  context.commit('do', command);
         },
     },
     mutations: {
