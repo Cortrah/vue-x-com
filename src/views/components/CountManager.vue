@@ -22,19 +22,8 @@
         },
         methods: {
             inc: function () {
-                //let addPromise = new Promise((resolve, reject) => {
-                   let command = new AddSome({amt: this.amount, context: this.$store});
-                   let returnValue = this.$bus.$emit(command.name, command);
-                   console.log("returnValue");
-                   console.log(returnValue);
-                //});
-                // addPromise
-                //     .then( response => {
-                //         console.log('add returned');
-                //     })
-                //     .catch( error => {
-                //         console.log("add error");
-                //     })
+               let command = new AddSome({amt: this.amount, context: this.$store});
+               let returnValue = this.$bus.$emit(command.name, command);
             },
         }
     });

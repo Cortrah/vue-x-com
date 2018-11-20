@@ -8,16 +8,13 @@ export default new Vuex.Store({
         counter: 0,
     },
     actions: {
-        do(context, payload) {
-            console.log("action");
-            return context.commit('do', payload)
+        enque(context, command) {
+            return context.commit('do', command);
         },
     },
     mutations: {
         do(state, payload) {
-            console.log("mutations");
-            console.log(payload.command);
-            return payload.command.do(state);
+            return payload.do(state);
         },
     }
 })
