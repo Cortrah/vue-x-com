@@ -8,10 +8,6 @@ export default class Goto extends Command{
 
     do(state){
         this.data.router.push({name: this.data.name});
-
-        //if(this.data.name === 'Home'){
-        //    this.data.router.push(this.data.path);
-        //}
     }
 }
 

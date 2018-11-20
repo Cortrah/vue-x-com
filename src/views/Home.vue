@@ -1,9 +1,8 @@
  <template>
     <div class="home">
         {{testHomeProp}}
-        <h1>This is a Home page.</h1>
-
         <CountManager/>
+
         <button @click.stop.prevent="goAbout()">
             About Woodstock
         </button>
@@ -16,7 +15,7 @@
     import Goto from '../commands/Goto';
 
     export default Vue.extend({
-        name: 'home',
+        name: 'Home',
 
         components: {
             CountManager,
@@ -29,18 +28,8 @@
         methods: {
             goAbout: function () {
                 let command = new Goto({router: this.$router, name: "About"});
-                let result = this.$store.dispatch("enque", command);
+                this.$bus.emit("enque", command);
             }
         },
-
-        created() {
-            this.$bus.$on('AddSome', (command) => {
-                return this.$store.dispatch("enque", command);
-            });
-        },
-
-        beforeDestroy () {
-            this.$bus.$off('AddSome');
-        }
     });
 </script>

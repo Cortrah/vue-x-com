@@ -1,8 +1,11 @@
 <template>
     <div class="hello">
+
         <h1>{{ this.$store.state.counter }}</h1>
         <input v-model="amount" style="max-width: 40px"/>
+
         <br/>
+
         <button @click.prevent="inc()">
             +
         </button>
@@ -23,7 +26,7 @@
         methods: {
             inc: function () {
                let command = new AddSome({amt: this.amount, context: this.$store});
-               let returnValue = this.$bus.$emit(command.name, command);
+               this.$bus.$emit('enque', command);
             },
         }
     });
