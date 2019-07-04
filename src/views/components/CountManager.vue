@@ -1,10 +1,16 @@
 <template>
-    <div class="hello">
+    <div>
+
         <h1>{{ this.$store.state.counter }}</h1>
         <input v-model="amount" style="max-width: 40px"/>
+
         <br/>
-        <button @click.prevent="inc()">
-            +
+
+        <button @click.prevent="delta(-2)">
+            -2
+        </button>
+        <button @click.prevent="delta(4)">
+            +4
         </button>
     </div>
 </template>
@@ -15,16 +21,14 @@
 
     export default Vue.extend({
         name: 'CountManager',
-        data () {
-            return {
-                amount: 4,
-            }
-        },
         methods: {
-            inc: function () {
-                let command = new AddSome({amt: this.amount, context: this.$store});
-                let returnValue = this.$bus.$emit("enqueue", command);
-                console.log(returnValue);
+            delta: function (amt) {
+                this.$store.dispatch(
+                    {
+                        type: 'onDispatch',
+                        command: new AddSome({amt:amt})
+                    }
+                );
             },
         }
     });

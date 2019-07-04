@@ -1,28 +1,40 @@
  <template>
     <div class="home">
+        {{testHomeProp}}
         <CountManager/>
+
+        <button @click.stop.prevent="navigate('About')">
+            Go About
+        </button>
     </div>
 </template>
 
-<script lang="ts">
+<script>
     import Vue from 'vue';
     import CountManager from './components/CountManager.vue';
+    import Goto from '../commands/Goto';
 
     export default Vue.extend({
-        name: 'home',
+        name: 'Home',
 
         components: {
             CountManager,
         },
 
-        created() {
-            this.$bus.$on('enqueue', (command) => {
-                return this.$store.dispatch({ type: "enqueue", command});
-            });
+        props: {
+            testHomeProp: null,
         },
 
-        beforeDestroy () {
-            this.$bus.$off('enqueue');
+        methods: {
+            navigate: function (destination) {
+                let command = new Goto({router: this.$router, name: destination});
+                this.$store.dispatch(
+                    {
+                        type: 'onDispatch',
+                        command: command
+                    }
+                );
+            }
         }
     });
 </script>

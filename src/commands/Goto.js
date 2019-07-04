@@ -1,9 +1,9 @@
 import Command from "./Command";
 
-export default class AddSome extends Command{
+export default class Goto extends Command{
 
     constructor(data) {
-        super('AddSome', data);
+        super('Goto', data);
     }
 
     // action
@@ -18,7 +18,11 @@ export default class AddSome extends Command{
         // console.log(payload.action);
         // console.log(payload.results);
         // console.log(this.data);
-        return state.counter += this.data.amt;
+        let paramId = null;
+        if(this.data.params){
+            paramId = this.data.params.id;
+        }
+        return state.appView.$router.push({name: this.data.name, params: {id: paramId}});
     }
 }
 
