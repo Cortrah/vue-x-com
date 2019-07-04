@@ -1,72 +1,40 @@
  <template>
     <div class="home">
+        {{testHomeProp}}
         <CountManager/>
-        <p>
-            Is Running ?: {{queue.isRunning}}
-        </p>
-        <p>
-            Direction: {{queue.direction}}
-        </p>
-        <p>
-            on {{queue.playhead}} of {{ queue.commands.length }}
-        </p>
+
+        <button @click.stop.prevent="navigate('About')">
+            Go About
+        </button>
     </div>
 </template>
 
-<script lang="ts">
+<script>
     import Vue from 'vue';
     import CountManager from './components/CountManager.vue';
-    import Queue from '../commander/Queue'
+    import Goto from '../commands/Goto';
 
     export default Vue.extend({
-        name: 'home',
+        name: 'Home',
 
         components: {
             CountManager,
         },
 
-        data () {
-            return {
-                queue: new Queue(),
-                eventList: ['Enqueue', 'Play', 'Pause', 'Reverse'],
-            }
-        },
-
-        created() {
-            this.eventList.forEach( eventName => {
-                this.$bus.$on(eventName, data => {
-                    this.eventSwitch(eventName, data);
-                });
-            });
-        },
-
-        beforeDestroy () {
-            this.eventList.forEach( eventName => {
-                this.$bus.$off(eventName);
-            });
+        props: {
+            testHomeProp: null,
         },
 
         methods: {
-            eventSwitch: function (eventName, data) {
-                switch(eventName) {
-                    case 'Enqueue': {
-                        this.queue.add(data);
-                        break;
+            navigate: function (destination) {
+                let command = new Goto({router: this.$router, name: destination});
+                this.$store.dispatch(
+                    {
+                        type: 'onDispatch',
+                        command: command
                     }
-                    case 'Play': {
-                        this.queue.play();
-                        break;
-                    }
-                    case 'Pause': {
-                        this.queue.pause();
-                        break;
-                    }
-                    case 'Reverse': {
-                        this.queue.reverse();
-                        break;
-                    }
-                }
-            },
+                );
+            }
         }
     });
 </script>
